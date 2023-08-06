@@ -1,4 +1,4 @@
-module my_tool
+module github.com/dualist3/my_tool
 
 go 1.20
 
