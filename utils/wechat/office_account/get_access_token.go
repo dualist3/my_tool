@@ -8,6 +8,7 @@ import (
 	"net/http"
 )
 
+// GetAccessToken 微信公众号平台获取Token 返回AccessToken 和过期时间 source:https://developers.weixin.qq.com/doc/offiaccount/Basic_Information/Get_access_token.html
 func GetAccessToken(appID, appSecret string) (*AccessTokenResp, error) {
 	url := fmt.Sprintf("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=%s&secret=%s", appID, appSecret)
 	resp, err := http.Get(url)

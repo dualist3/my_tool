@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+// WechatOfficeUrlCheck 微信公众号URL验证算法 source:https://developers.weixin.qq.com/doc/offiaccount/Basic_Information/Access_Overview.html
 func WechatOfficeUrlCheck(token, signature, timestamp, nonce string) bool {
 	// 将 timestamp、nonce、token 进行字典序排序
 	tmpArr := []string{token, timestamp, nonce}
