@@ -6,7 +6,7 @@ import (
 	"encoding/base64"
 )
 
-// CBC 模式
+// Dncrypt CBC 模式
 //解密
 /**
 * rawData 原始加密数据
@@ -30,7 +30,7 @@ func Dncrypt(rawData, key, iv string) ([]byte, error) {
 	return dnData, nil
 }
 
-// 解密
+// AesCBCDncrypt 解密
 func AesCBCDncrypt(encryptData, key, iv []byte) ([]byte, error) {
 	block, err := aes.NewCipher(key)
 	if err != nil {
@@ -50,7 +50,7 @@ func AesCBCDncrypt(encryptData, key, iv []byte) ([]byte, error) {
 	return encryptData, nil
 }
 
-// 去除填充
+// PKCS7UnPadding 去除填充
 func PKCS7UnPadding(origData []byte) []byte {
 	length := len(origData)
 	unpadding := int(origData[length-1])

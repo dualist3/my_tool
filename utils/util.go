@@ -9,6 +9,7 @@ import (
 	"time"
 )
 
+// PackInt64ToString 将int64数组打包成字符串  分隔符为,
 func PackInt64ToString(Packs []int64) string {
 	var TempString = ""
 	for _, v := range Packs {
@@ -22,6 +23,7 @@ func PackInt64ToString(Packs []int64) string {
 	return TempString
 }
 
+// PackStringToString 将string数组打包成字符串 分隔符为,
 func PackStringToString(Packs []string) string {
 	var TempString = ""
 	for _, v := range Packs {
@@ -35,6 +37,7 @@ func PackStringToString(Packs []string) string {
 	return TempString
 }
 
+// UnpackStringToInt64Slice 将字符串解包成int64数组 分隔符为,
 func UnpackStringToInt64Slice(s string) (int64Slice []int64) {
 	Ids := strings.Split(s, ",")
 
@@ -48,6 +51,7 @@ func UnpackStringToInt64Slice(s string) (int64Slice []int64) {
 	return int64Slice
 }
 
+// UnpackStringToStringSlice 将字符串解包成string数组 分隔符为,
 func UnpackStringToStringSlice(s string) (int64Slice []string) {
 	if s == "" {
 		return nil
@@ -57,6 +61,7 @@ func UnpackStringToStringSlice(s string) (int64Slice []string) {
 	return Ids
 }
 
+// GenerateID 生成ID 以N开头
 func GenerateID() string {
 	var prefix string = "N"
 	rand.Seed(time.Now().UnixNano())
@@ -90,6 +95,7 @@ func IsIDCardValid(idCard string) bool {
 	return re.MatchString(idCard)
 }
 
+// GetRandomString 获取指定长度的随机字符串
 func GetRandomString(l int) string {
 	str := "0123456789abcdefghijklmnopqrstuvwxyz"
 	bytes := []byte(str)
@@ -101,6 +107,7 @@ func GetRandomString(l int) string {
 	return string(result)
 }
 
+// IsTwelveYearsOldAt 判断身份证号对应的人是否在指定时间已满 12 周岁
 func IsTwelveYearsOldAt(id string, timestamp int64) bool {
 	// 将时间戳转换为 time.Time 对象
 	t := time.Unix(timestamp, 0)
@@ -117,11 +124,15 @@ func IsTwelveYearsOldAt(id string, timestamp int64) bool {
 	// 返回年龄是否大于等于 12
 	return age >= 12
 }
+
+// GetMidnightTime 获取当天凌晨的时间戳 (秒级时间戳)
 func GetMidnightTime() int64 {
 	now := time.Now()
 	midnight := time.Date(now.Year(), now.Month(), now.Day(), 0, 0, 0, 0, now.Location())
 	return midnight.Unix()
 }
+
+// GetMonthStartAndEnd 获取指定时间戳所在月份的开始时间和结束时间 (UTC) (秒级时间戳) (返回的时间戳为UTC时间)
 func GetMonthStartAndEnd(timestamp int64) (int64, int64) {
 	t := time.Unix(timestamp, 0).UTC()
 	year, month, _ := t.Date()
@@ -135,6 +146,8 @@ func GetMonthStartAndEnd(timestamp int64) (int64, int64) {
 
 	return monthStart, monthEnd
 }
+
+// MaxConsecutiveDays 计算最大连续天数 (时间戳数组)
 func MaxConsecutiveDays(timestamps []int64) int {
 	if len(timestamps) == 0 {
 		return 0

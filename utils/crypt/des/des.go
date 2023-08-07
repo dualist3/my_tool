@@ -11,6 +11,7 @@ type Encryption struct {
 	Key []byte
 }
 
+// NewDesCrypt 创建一个des加密对象 传入密钥 eg:var pwDeKey = []byte{3, 2, 3, 2, 5, 5, 1, 1}  加密解密 key 必须8位字节-----DES算法
 func NewDesCrypt(pwDeKey []byte) *Encryption {
 	return &Encryption{Key: pwDeKey}
 }
